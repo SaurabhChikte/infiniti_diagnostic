@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infiniti Diagnostics Center - Advanced Pathology Lab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="./assets/pathology.png">
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #00a86b;
+            --accent-color: #e91e63;
+            --dark-color: #2c3e50;
+            --light-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+        }
+
+        /* Header Styles */
+        .navbar {
+            background: transparent !important;
+            /* padding: 1rem 0; */
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: rgb(0, 0, 0) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffd700 !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(44, 90, 160, 0.9), rgba(0, 168, 107, 0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="medical" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23medical)"/></svg>');
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-top: 8rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/placeholder.svg?height=800&width=1200') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-custom {
+            background: linear-gradient(45deg, var(--accent-color), #ff6b9d);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: none;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* Packages Section */
+        .packages {
+            padding: 80px 0;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .package-header {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .package-body {
+            padding: 30px 20px;
+        }
+
+        .package-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .package-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .package-features li i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+
+        /* Special Offers */
+        .special-offers {
+            background: linear-gradient(135deg, var(--accent-color), #ff6b9d);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .offer-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .contact-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            height: 100%;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .package-price {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img style="height: 6rem;" src="./assets/logo2.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#packages">Packages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="animate-on-scroll">INFINITI DIAGNOSTICS CENTER</h1>
+                    <p class="animate-on-scroll">Advanced Pathology Lab - Accurate Care, Accurate Results</p>
+                    <p class="animate-on-scroll">Experience world-class diagnostic services with cutting-edge technology and expert care. Your health is our priority.</p>
+                    <div class="animate-on-scroll">
+                        <a href="#packages" class="btn btn-custom btn-lg me-3">
+                            <i class="fas fa-flask me-2"></i>View Packages
+                        </a>
+                        <a href="tel:7387722809" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-phone me-2"></i>Call Now
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <img src="./assets/pathologylab.jpg" alt="Medical Lab" class="img-fluid rounded-3 shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="services" class="features">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-4 fw-bold mb-3">Why Choose Infiniti Diagnostics?</h2>
+                    <p class="lead">We provide comprehensive diagnostic services with state-of-the-art technology and experienced professionals.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h4>Home Sample Collection</h4>
+                        <p>Convenient blood sample collection at your doorstep with trained phlebotomists.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h4>Online Reports</h4>
+                        <p>Access your test results online anytime, anywhere with our secure digital platform.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4>Accredited Lab</h4>
+                        <p>Certified by leading health organizations ensuring highest quality standards.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h4>500+ Tests</h4>
+                        <p>Comprehensive range of diagnostic tests covering all medical specialties.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="special-offers">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="offer-badge">
+                        <i class="fas fa-star me-2"></i>SPECIAL HEALTH CAMP
+                    </div>
+                    <h2 class="display-4 fw-bold mb-3">Up To 75% OFF</h2>
+                    <p class="lead">Limited time offer on all health check-up packages. Book now and save big on your health screening!</p>
+                    <a href="#packages" class="btn btn-light btn-lg mt-3">
+                        <i class="fas fa-arrow-down me-2"></i>View Offers
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="packages">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-4 fw-bold mb-3">Health Check-up Packages</h2>
+                    <p class="lead">Choose from our comprehensive range of health packages designed for your specific needs.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>PROCARE TRIO</h4>
+                            <div class="package-price">₹80</div>
+                            <small>Hemoglobin, Random Blood Sugar, Total Cholesterol</small>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li><i class="fas fa-check"></i> Hemoglobin Test</li>
+                                <li><i class="fas fa-check"></i> Random Blood Sugar</li>
+                                <li><i class="fas fa-check"></i> Total Cholesterol</li>
+                                <li><i class="fas fa-check"></i> Home Collection</li>
+                                <li><i class="fas fa-check"></i> Online Reports</li>
+                            </ul>
+                            <a href="tel:7387722809" class="btn btn-custom w-100 mt-3">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>PROCARE SUGAR CHECK</h4>
+                            <div class="package-price">₹299</div>
+                            <small>HbA1c, Fasting Blood Sugar, Total Cholesterol</small>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li><i class="fas fa-check"></i> HbA1c Test</li>
+                                <li><i class="fas fa-check"></i> Fasting Blood Sugar</li>
+                                <li><i class="fas fa-check"></i> Total Cholesterol</li>
+                                <li><i class="fas fa-check"></i> Home Collection</li>
+                                <li><i class="fas fa-check"></i> Online Reports</li>
+                            </ul>
+                            <a href="tel:7387722809" class="btn btn-custom w-100 mt-3">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>PROCARE VITA-CHECK</h4>
+                            <div class="package-price">₹699</div>
+                            <small>Vitamin B12, Vitamin D3, Iron Studies</small>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li><i class="fas fa-check"></i> Vitamin B12</li>
+                                <li><i class="fas fa-check"></i> Vitamin D3</li>
+                                <li><i class="fas fa-check"></i> Iron Studies</li>
+                                <li><i class="fas fa-check"></i> Home Collection</li>
+                                <li><i class="fas fa-check"></i> Online Reports</li>
+                            </ul>
+                            <a href="tel:7387722809" class="btn btn-custom w-100 mt-3">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>PROSELI EASY RANGE</h4>
+                            <div class="package-price">₹1250+</div>
+                            <small>Comprehensive Health Check-up Packages</small>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li><i class="fas fa-check"></i> CBC, ESR, RBS</li>
+                                <li><i class="fas fa-check"></i> HbA1c, Thyroid Profile</li>
+                                <li><i class="fas fa-check"></i> Lipid Profile, Kidney Function</li>
+                                <li><i class="fas fa-check"></i> Liver Function, Electrolytes</li>
+                                <li><i class="fas fa-check"></i> Vitamin D, B12, Iron Profile</li>
+                            </ul>
+                            <a href="tel:7387722809" class="btn btn-custom w-100 mt-3">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-4 fw-bold mb-3">Contact Us</h2>
+                    <p class="lead">Get in touch with us for appointments, queries, or emergency services.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4>Call Us</h4>
+                        <p class="mb-3">For appointments and queries</p>
+                        <a href="tel:7387722809" class="btn btn-custom">
+                            <i class="fas fa-phone me-2"></i>7387722809
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-whatsapp"></i>
+                        </div>
+                        <h4>WhatsApp</h4>
+                        <p class="mb-3">Quick support and booking</p>
+                        <a target="_blank" href="https://wa.me/917387722809" class="btn btn-custom">
+                            <i class="fab fa-whatsapp me-2"></i>WhatsApp Us
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Visit Us</h4>
+                        <p class="mb-3">Our diagnostic center location</p>
+                        <a target="_blank" href="https://maps.app.goo.gl/s2pRxmnmPKDTn9Ns9" class="btn btn-custom">
+                            <i class="fas fa-map me-2"></i>Get Directions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img style="height: 6rem;" src="./assets/logo.png" alt="">
+                    
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <h5><i class="fas fa-microscope me-2"></i>INFINITI DIAGNOSTICS CENTER</h5>
+                    <p>Advanced Pathology Lab - Accurate Care, Accurate Results</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <!-- <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a> -->
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2025 Infiniti Diagnostics Center. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'linear-gradient(135deg, rgba(44, 90, 160, 0.95), rgba(0, 168, 107, 0.95))';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.feature-card, .package-card, .contact-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+
+        // Phone number click tracking
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', function() {
+                // You can add analytics tracking here
+                console.log('Phone number clicked:', this.href);
+            });
+        });
+
+        // WhatsApp link click tracking
+        document.querySelectorAll('a[href^="https://wa.me/"]').forEach(link => {
+            link.addEventListener('click', function() {
+                // You can add analytics tracking here
+                console.log('WhatsApp link clicked:', this.href);
+            });
+        });
+    </script>
+</body>
+</html>
